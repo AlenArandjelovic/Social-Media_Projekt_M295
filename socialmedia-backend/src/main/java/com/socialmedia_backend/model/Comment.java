@@ -19,35 +19,31 @@ public class Comment {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    // kommentar gehört zu einem post
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
+
+    // kommentar gehört zu einem user
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Comment() {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
+    // getter & setter
+    public Long getId() { return id; }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 
-    public Post getPost() {
-        return post;
-    }
+    public Post getPost() { return post; }
+    public void setPost(Post post) { this.post = post; }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

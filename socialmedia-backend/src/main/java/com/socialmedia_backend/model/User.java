@@ -22,38 +22,29 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    // ein User kann mehrere Posts haben
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts;
 
-    public User() {
-    }
+    // ein User kann mehrere Kommentare haben
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
 
-    public Long getId() {
-        return id;
-    }
+    public User() {}
 
-    public String getUsername() {
-        return username;
-    }
+    // getter und setter
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public List<Post> getPosts() { return posts; }
+    public void setPosts(List<Post> posts) { this.posts = posts; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setId(Long id) {
-    this.id = id;
-    }
-
+    public List<Comment> getComments() { return comments; }
+    public void setComments(List<Comment> comments) { this.comments = comments; }
 }

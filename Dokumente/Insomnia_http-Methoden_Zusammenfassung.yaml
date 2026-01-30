@@ -1,0 +1,434 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: M295-Projekt-Collection
+meta:
+  id: wrk_88a4ab48c2914ef7892824fc5e057e4e
+  created: 1767962064259
+  modified: 1769777271579
+  description: ""
+collection:
+  - url: http://localhost:8080/users/1
+    name: TC 1.1
+    meta:
+      id: req_b51b9ecf38b443048c976a67615cfc62
+      created: 1769762545020
+      modified: 1769771158280
+      isPrivate: false
+      description: ""
+      sortKey: -1769762545020
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users
+    name: TC 1.2
+    meta:
+      id: req_5cce248bb6fd43f6903a6c48a2e1b3a7
+      created: 1769763624774
+      modified: 1769771324212
+      isPrivate: false
+      description: ""
+      sortKey: -1769763624774
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "username": "max"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users
+    name: TC 1.3
+    meta:
+      id: req_6385266d4f5c4907a5b474ceb08a5613
+      created: 1769763728954
+      modified: 1769771397302
+      isPrivate: false
+      description: ""
+      sortKey: -1769763728954
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "username": "max",
+          "email": "maxexample.com"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users
+    name: TC 1.1
+    meta:
+      id: req_f72b56fab330467384519a2062a4773e
+      created: 1769770346483
+      modified: 1769771552023
+      isPrivate: false
+      description: ""
+      sortKey: -1769762544920
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "username": "max",
+          "email": "max@example.com"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts
+    name: TC 2.1
+    meta:
+      id: req_42a27fa143dd4323945bebde36388bd7
+      created: 1769771484578
+      modified: 1769774632835
+      isPrivate: false
+      description: ""
+      sortKey: -1769771484578
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "title": "Mein erster Post",
+          "content": "Inhalt des Posts",
+          "user":{
+            "id": 1
+          }
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts/1
+    name: TC 2.1
+    meta:
+      id: req_a2da7263b9f14e6e81091efaf8e9c14a
+      created: 1769771522174
+      modified: 1769774789675
+      isPrivate: false
+      description: ""
+      sortKey: -1769771522174
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts
+    name: TC 2.2
+    meta:
+      id: req_d1c151682b0e4733ab565d88fe181941
+      created: 1769771565587
+      modified: 1769774858628
+      isPrivate: false
+      description: ""
+      sortKey: -1769771565587
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "userId": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts
+    name: TC 2.3
+    meta:
+      id: req_3cbd68bf4a0a40a78a555f6b83efd901
+      created: 1769771588170
+      modified: 1769775215622
+      isPrivate: false
+      description: ""
+      sortKey: -1769771588170
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "title": "Test Post",
+          "content": "Test Inhalt",
+          "userId": 999
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts
+    name: TC 2.4
+    meta:
+      id: req_524d659707df4844b56eb9800b7adede
+      created: 1769771605903
+      modified: 1769771615145
+      isPrivate: false
+      description: ""
+      sortKey: -1769771605903
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts/1/comments
+    name: TC 3.1
+    meta:
+      id: req_6eaa06bd177045af8c80f535a46a9232
+      created: 1769771719078
+      modified: 1769775316695
+      isPrivate: false
+      description: ""
+      sortKey: -1769771719078
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "content": "Super Beitrag!",
+            "user":{
+            "id": 1
+          }
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts/1/comments
+    name: TC 3.1
+    meta:
+      id: req_18e0a1830f4d4a0e9d21626393f42d1e
+      created: 1769771763543
+      modified: 1769771784548
+      isPrivate: false
+      description: ""
+      sortKey: -1769771763543
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts/999/comments
+    name: TC 3.2
+    meta:
+      id: req_8ce63252e102481383ebc3387bb16be2
+      created: 1769771791995
+      modified: 1769776286107
+      isPrivate: false
+      description: ""
+      sortKey: -1769771791995
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "content": "Test Kommentar",
+          "userId": 1
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts/1/comments
+    name: TC 3.3
+    meta:
+      id: req_b484892ae8f6410cb270200f0c243a76
+      created: 1769771829713
+      modified: 1769776310545
+      isPrivate: false
+      description: ""
+      sortKey: -1769771829713
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "content": "Test Kommentar",
+          "userId": 999
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/posts/1/comments
+    name: TC 3.4
+    meta:
+      id: req_8e4cc38a0e0f4cdda228bdd04ea56d91
+      created: 1769771871882
+      modified: 1769771897206
+      isPrivate: false
+      description: ""
+      sortKey: -1769771871882
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_294132d11e60855a04ae80f34bbac8202bc3f204
+    created: 1767962064312
+    modified: 1767962064312
+environments:
+  name: Base Environment
+  meta:
+    id: env_294132d11e60855a04ae80f34bbac8202bc3f204
+    created: 1767962064290
+    modified: 1767962064290
+    isPrivate: false
