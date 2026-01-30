@@ -30,10 +30,8 @@ class UserControllerTests {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-
-        // User-Objekt vorbereiten
         user1 = new User();
-        // User ID setter hinzufügen oder Konstruktor anpassen
+        user1.setId(1L);
         user1.setUsername("testuser");
         user1.setEmail("test@example.com");
     }
@@ -74,7 +72,7 @@ class UserControllerTests {
         when(userService.createUser(any(User.class))).thenReturn(user1);
 
         ResponseEntity<User> response = userController.createUser(user1);
-        assertEquals(200, response.getStatusCodeValue()); // Controller gibt aktuell 200, nicht 201
+        assertEquals(201, response.getStatusCodeValue()); // 201 Created
         assertNotNull(response.getBody());
         assertEquals("testuser", response.getBody().getUsername());
     }

@@ -25,37 +25,27 @@ public class PostController {
 
     // Create Post
     @PostMapping
-    public ResponseEntity<?> createPost(@Valid @RequestBody Post post) {
-        try {
-            // Prüfen, ob User im JSON existiert
-            if (post.getUser() == null || post.getUser().getId() == null) {
-                return ResponseEntity
-                        .status(HttpStatus.BAD_REQUEST)
-                        .body("User fehlt oder userId ist null");
-            }
-
-            // User aus DB holen
-            User user = userService.getUserById(post.getUser().getId())
-                    .orElseThrow(() -> new RuntimeException("User nicht gefunden"));
-
-            // Post User zuweisen
-            post.setUser(user);
-
-            // Post speichern
-            Post savedPost = postService.createPost(post);
-            return ResponseEntity.ok(savedPost);
-
-        } catch (RuntimeException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
+    public ResponseEntity<Post> createPost(@Valid @RequestBody Post post) {
+        if (post.getUser() == null || post.getUser().getId() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+
+        User user = userService.getUserById(post.getUser().getId())
+                .orElse(null);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        post.setUser(user);
+        Post savedPost = postService.createPost(post);
+        return ResponseEntity.ok(savedPost);
     }
 
     // Get all posts
     @GetMapping
     public ResponseEntity<List<Post>> getAllPosts() {
-        return ResponseEntity.ok(postService.getAllPosts());
+        List<Post> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
     }
 
     // Get post by id
@@ -68,27 +58,20 @@ public class PostController {
 
     // Update post
     @PutMapping("/{id}")
-    public ResponseEntity<?> updatePost(@PathVariable Long id, @Valid @RequestBody Post post) {
-        try {
-            if (post.getUser() == null || post.getUser().getId() == null) {
-                return ResponseEntity
-                        .status(HttpStatus.BAD_REQUEST)
-                        .body("User fehlt oder userId ist null");
-            }
-
-            User user = userService.getUserById(post.getUser().getId())
-                    .orElseThrow(() -> new RuntimeException("User nicht gefunden"));
-
-            post.setUser(user);
-
-            Post updatedPost = postService.updatePost(id, post);
-            return ResponseEntity.ok(updatedPost);
-
-        } catch (RuntimeException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
+    public ResponseEntity<Post> updatePost(@PathVariable Long id, @Valid @RequestBody Post post) {
+        if (post.getUser() == null || post.getUser().getId() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+
+        User user = userService.getUserById(post.getUser().getId())
+                .orElse(null);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        post.setUser(user);
+        Post updatedPost = postService.updatePost(id, post);
+        return ResponseEntity.ok(updatedPost);
     }
 
     // Delete post

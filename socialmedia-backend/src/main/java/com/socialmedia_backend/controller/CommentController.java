@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts/{postId}/comments")
+@RequestMapping("/comments")
 public class CommentController {
 
     private final CommentService commentService;
@@ -27,74 +27,49 @@ public class CommentController {
         this.userService = userService;
     }
 
-    // erstelle einen kommentar für einen post
-    @PostMapping
-    public ResponseEntity<?> createComment(
-            @PathVariable Long postId,
-            @Valid @RequestBody Comment comment) {
-
+    // Create Comment
+    @PostMapping("/{postId}")
+    public ResponseEntity<Comment> createComment(@PathVariable Long postId, @Valid @RequestBody Comment comment) {
         try {
-            // post prüfen
+            // Prüfen ob Post existiert
             Post post = postService.getPostById(postId)
                     .orElseThrow(() -> new RuntimeException("Post nicht gefunden"));
 
-            // user prüfen
-            if (comment.getUser() == null || comment.getUser().getId() == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("User fehlt oder userId ist null");
-            }
-
-            User user = userService.getUserById(comment.getUser().getId())
-                    .orElseThrow(() -> new RuntimeException("User nicht gefunden"));
-
-            // post und user zuweisen
             comment.setPost(post);
-            comment.setUser(user);
-
             Comment savedComment = commentService.createComment(comment);
             return ResponseEntity.ok(savedComment);
-
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
-    // alle kommentare für einen post abrufen
+    // Get all Comments
     @GetMapping
-    public ResponseEntity<List<Comment>> getCommentsByPost(@PathVariable Long postId) {
-        return ResponseEntity.ok(commentService.getCommentsByPostId(postId));
+    public ResponseEntity<List<Comment>> getAllComments() {
+        List<Comment> comments = commentService.getAllComments();
+        return ResponseEntity.ok(comments);
     }
 
-    // einzelner kommentar abrufen
-    @GetMapping("/{id}")
+    // Get Comment by ID
+    @GetMapping("/id/{id}")
     public ResponseEntity<Comment> getCommentById(@PathVariable Long id) {
         return commentService.getCommentById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // kommentar aktualisieren
+    // Update Comment
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateComment(@PathVariable Long id, @Valid @RequestBody Comment comment) {
+    public ResponseEntity<Comment> updateComment(@PathVariable Long id, @Valid @RequestBody Comment comment) {
         try {
-            if (comment.getUser() == null || comment.getUser().getId() == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("User fehlt oder userId ist null");
-            }
-
-            User user = userService.getUserById(comment.getUser().getId())
-                    .orElseThrow(() -> new RuntimeException("User nicht gefunden"));
-
-            comment.setUser(user);
             Comment updatedComment = commentService.updateComment(id, comment);
             return ResponseEntity.ok(updatedComment);
-
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
-    // kommentar löschen
+    // Delete Comment
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);

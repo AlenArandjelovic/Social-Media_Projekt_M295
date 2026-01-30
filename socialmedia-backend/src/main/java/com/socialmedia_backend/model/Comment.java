@@ -46,4 +46,9 @@ public class Comment {
 
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
+
+    public void setId(Long id) {
+    this.id = id;
+}
+
 }
